@@ -1,6 +1,6 @@
 export default function ContactUs() {
   return (
-    <section className="bg-gray-800 text-white py-10">
+    <section className="bg-gray-800 pt-20 text-white py-10">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-10">
         {/* Bagian Kontak */}
         <div className="flex flex-col space-y-4">

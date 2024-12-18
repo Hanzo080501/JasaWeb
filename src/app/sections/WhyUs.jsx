@@ -1,10 +1,11 @@
 'use client';
 import { motion } from 'framer-motion';
-import { FaCheckCircle, FaSearch } from 'react-icons/fa';
+import { FaCheckCircle } from 'react-icons/fa';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
+import featrus from '../../../public/featrus.png'; // Ganti dengan path gambar yang sesuai
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -59,56 +60,43 @@ const WhyUs = () => {
       initial={{ y: 20 }}
       animate={{ y: 0 }}
       whileTap={{ scale: 0.9 }}
-      className="flex flex-col-reverse sm:flex-row justify-between items-center gap-10 p-8">
+      className="flex flex-col-reverse py-10 px-6 sm:px-12 md:px-16 lg:px-32 xl:px-40 w-full sm:flex-row justify-between items-center gap-10 dark:bg-gray-800 dark:text-white transition-colors duration-300">
       {/* Bagian Kiri - Teks */}
       <div className="flex flex-col gap-4 w-full sm:w-1/2">
         <motion.h1
           ref={(el) => (textRefs.current[0] = el)}
-          className="text-3xl font-bold text-gray-800">
+          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white">
           Mengapa Kami?
         </motion.h1>
-        <motion.p ref={(el) => (textRefs.current[1] = el)} className="text-lg text-gray-600">
+        <motion.p
+          ref={(el) => (textRefs.current[1] = el)}
+          className="text-lg sm:text-xl text-gray-600 dark:text-gray-300">
           Keuntungan yang akan Anda dapatkan dari layanan jasa website kami yaitu:
         </motion.p>
 
         {/* Daftar Keuntungan */}
         <div className="flex flex-col gap-4 py-4">
-          <motion.div
-            ref={(el) => (textRefs.current[2] = el)}
-            className="flex items-center text-lg text-gray-600">
-            <FaCheckCircle className="text-yellow-400 mr-2" />
-            Dukungan Teknis dan Pemeliharaan
-          </motion.div>
-          <motion.div
-            ref={(el) => (textRefs.current[3] = el)}
-            className="flex items-center text-lg text-gray-600">
-            <FaCheckCircle className="text-yellow-400 mr-2" />
-            Pengerjaan Cepat
-          </motion.div>
-          <motion.div
-            ref={(el) => (textRefs.current[4] = el)}
-            className="flex items-center text-lg text-gray-600">
-            <FaCheckCircle className="text-yellow-400 mr-2" />
-            Garansi Revisi
-          </motion.div>
-          <motion.div
-            ref={(el) => (textRefs.current[5] = el)}
-            className="flex items-center text-lg text-gray-600">
-            <FaCheckCircle className="text-yellow-400 mr-2" />
-            Harga Terjangkau
-          </motion.div>
-          <motion.div
-            ref={(el) => (textRefs.current[6] = el)}
-            className="flex items-center text-lg text-gray-600">
-            <FaCheckCircle className="text-yellow-400 mr-2" />
-            Bisa Konsultasi terlebih dahulu
-          </motion.div>
+          {[
+            'Dukungan Teknis dan Pemeliharaan',
+            'Pengerjaan Cepat',
+            'Garansi Revisi',
+            'Harga Terjangkau',
+            'Bisa Konsultasi terlebih dahulu',
+          ].map((text, index) => (
+            <motion.div
+              key={index}
+              ref={(el) => (textRefs.current[index + 2] = el)}
+              className="flex items-center text-lg sm:text-xl text-gray-600 dark:text-gray-300">
+              <FaCheckCircle className="text-yellow-400 mr-2" />
+              {text}
+            </motion.div>
+          ))}
         </div>
 
         {/* Tombol Konsultasi */}
         <motion.button
           whileHover={{ scale: 1.1 }}
-          className="bg-orange-500 text-white py-2 px-6 rounded-sm mt-6">
+          className="bg-orange-500 text-white py-2 px-6 rounded-sm mt-6 w-full sm:w-auto">
           Konsultasi
         </motion.button>
       </div>
@@ -116,24 +104,18 @@ const WhyUs = () => {
       {/* Bagian Kanan - Gambar atau Elemen Desain */}
       <div
         ref={imageRef}
-        className="relative flex justify-center items-center w-full sm:w-1/2 h-80 sm:h-full bg-orange-500">
-        <motion.div
-          className="flex justify-center items-center w-full sm:w-[300px] h-full bg-white rounded-xl p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}>
-          <div className="flex justify-between items-center w-full">
-            <input
-              type="text"
-              placeholder="Jasa/Website"
-              className="py-2 px-4 rounded-l-lg text-sm border-none w-3/4"
-            />
-            <button className="py-2 px-4 bg-yellow-500 rounded-r-lg text-white">
-              <FaSearch />
-            </button>
-          </div>
-        </motion.div>
+        className="relative flex justify-center items-center w-full sm:w-1/2 h-80 sm:h-full bg-orange-500 rounded-lg shadow-lg">
+        {/* Menambahkan gambar atau ilustrasi di kanan */}
+        <div className="absolute  left-0 right-0 mb-6">
+          <Image
+            src={featrus}
+            alt="Your Image"
+            className="w-[80%] mx-auto rounded-lg"
+            width={600}
+            height={400}
+          />
+        </div>
       </div>
-      <div className="w-1/2 md:w-1/2 h-full min-h-[50vh] bottom-0 bg-[#F9F9F9]"></div>
     </motion.div>
   );
 };

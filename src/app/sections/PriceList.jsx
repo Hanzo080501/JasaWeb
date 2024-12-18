@@ -1,79 +1,44 @@
 'use client';
 import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { Price } from '../data/Pricelist';
 
 const PriceList = () => {
+  const { ref, inView } = useInView({
+    threshold: 0.2,
+    triggerOnce: false,
+  });
+
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      className="py-20 bg-gray-100">
-      <div className="container mx-auto px-6">
+    <div className="min-h-screen flex flex-col justify-center items-center px-4 sm:px-8 lg:px-[10rem] transition-colors duration-500 dark:bg-gray-900 dark:text-white">
+      <div className="container mx-auto">
         {/* Title */}
-        <motion.h2
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="text-center text-3xl font-semibold text-gray-800 mb-12">
+        <h2 className="text-center text-3xl sm:text-4xl font-semibold text-gray-800 dark:text-white mb-12">
           Miliki website hanya dengan Rp. xxxxx/bulan
-        </motion.h2>
+        </h2>
 
         {/* Pricing Packages */}
         <div className="flex flex-col sm:flex-row gap-10 justify-center">
-          {/* Package 1 */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="bg-orange-500 text-white w-full sm:w-1/3 p-6 rounded-xl shadow-lg">
-            <h3 className="text-2xl font-bold mb-4">Paket 1</h3>
-            <p className="text-xl mb-4">Rp. xxx.xxx / tahun</p>
-            <ul className="list-disc pl-5 text-lg">
-              <li>5 halaman website</li>
-              <li>Pengerjaan 2 hari kerja</li>
-              <li>Garansi 1x revisi</li>
-              <li>Bisa req warna, font</li>
-              <li>Edit foto untuk 5 gambar</li>
-            </ul>
-          </motion.div>
-
-          {/* Package 2 */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="bg-teal-600 text-white w-full sm:w-1/3 p-6 rounded-xl shadow-lg">
-            <h3 className="text-2xl font-bold mb-4">Paket 2</h3>
-            <p className="text-xl mb-4">Rp. x.xxx.xxx / tahun</p>
-            <ul className="list-disc pl-5 text-lg">
-              <li>10 halaman website</li>
-              <li>Pengerjaan 5 hari kerja</li>
-              <li>Garansi 1x revisi</li>
-              <li>Bisa req warna, font</li>
-              <li>Edit foto untuk 10 gambar + logo</li>
-            </ul>
-          </motion.div>
-
-          {/* Package 3 */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="bg-orange-600 text-white w-full sm:w-1/3 p-6 rounded-xl shadow-lg">
-            <h3 className="text-2xl font-bold mb-4">Paket 3</h3>
-            <p className="text-xl mb-4">Rp. x.xxx.xxx / tahun</p>
-            <ul className="list-disc pl-5 text-lg">
-              <li>15 halaman website</li>
-              <li>Pengerjaan 7 hari kerja</li>
-              <li>Garansi 2x revisi</li>
-              <li>Bisa req warna, font dan desain</li>
-              <li>Fitur E-commerce</li>
-              <li>Edit foto untuk 15 gambar + logo</li>
-            </ul>
-          </motion.div>
+          {Price.map((paket, index) => (
+            <motion.div
+              key={index}
+              ref={ref}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
+              className={`${paket.color} text-white w-full sm:w-1/3 p-6 rounded-xl shadow-lg transition-transform transform hover:scale-105`}>
+              <h3 className="text-2xl sm:text-3xl font-bold mb-4">{paket.label}</h3>
+              <p className="text-xl sm:text-2xl mb-4">{paket.harga}</p>
+              <ul className="list-disc pl-5 text-lg sm:text-xl">
+                {paket.feature.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
         </div>
       </div>
-    </motion.section>
+    </div>
   );
 };
 
