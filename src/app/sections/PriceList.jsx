@@ -5,7 +5,7 @@ import { Price } from '../data/Pricelist';
 
 const PriceList = () => {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center px-4 sm:px-8 lg:px-[10rem] transition-colors duration-500 dark:bg-gray-900 dark:text-white">
+    <div className="min-h-screen pb-9 flex flex-col justify-center items-center px-4 sm:px-8 lg:px-[10rem] transition-colors duration-500 dark:bg-gray-900 dark:text-white">
       <div className="container mx-auto">
         {/* Title */}
         <h2 className="text-center text-3xl sm:text-4xl font-semibold text-gray-800 dark:text-white mb-12">
