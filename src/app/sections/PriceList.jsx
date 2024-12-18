@@ -9,7 +9,7 @@ const PriceList = () => {
       <div className="container mx-auto">
         {/* Title */}
         <h2 className="text-center text-3xl sm:text-4xl font-semibold text-gray-800 dark:text-white mb-12">
-          Miliki website hanya dengan Rp. xxxxx/bulan
+          Miliki website hanya dengan Rp. 83,333/bulan
         </h2>
 
         {/* Pricing Packages */}
