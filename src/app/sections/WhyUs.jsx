@@ -56,11 +56,7 @@ const WhyUs = () => {
   }, []);
 
   return (
-    <motion.div
-      initial={{ y: 20 }}
-      animate={{ y: 0 }}
-      whileTap={{ scale: 0.9 }}
-      className="flex flex-col-reverse py-10 px-6 sm:px-12 md:px-16 lg:px-32 xl:px-40 w-full sm:flex-row justify-between items-center gap-10 dark:bg-gray-800 dark:text-white transition-colors duration-300">
+    <motion.div className="flex flex-col-reverse py-10 px-6 sm:px-12 md:px-16 lg:px-32 xl:px-40 w-full sm:flex-row justify-between items-center gap-10 dark:bg-gray-800 dark:text-white transition-colors duration-300">
       {/* Bagian Kiri - Teks */}
       <div className="flex flex-col gap-4 w-full sm:w-1/2">
         <motion.h1

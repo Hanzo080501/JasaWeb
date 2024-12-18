@@ -74,11 +74,7 @@ const Fitur = () => {
   }, []);
 
   return (
-    <motion.div
-      initial={{ y: 20 }}
-      animate={{ y: 0 }}
-      whileTap={{ scale: 0.9 }}
-      className="flex pt-10 flex-col w-full px-10 md:px-16 lg:px-[10rem] dark:bg-gray-800 dark:text-gray-200">
+    <motion.div className="flex pt-10 flex-col w-full px-10 md:px-16 lg:px-[10rem] dark:bg-gray-800 dark:text-gray-200">
       <div className="flex flex-col justify-center items-center gap-10 leading-loose">
         <p className="text-primary text-4xl">Fitur</p>
         <h1
