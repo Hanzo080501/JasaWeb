@@ -112,7 +112,7 @@ const Fitur = () => {
 
           {/* Kolom Tengah */}
           <div className="relative flex flex-col overflow-hidden justify-center items-center leading-loose">
-            <div className="absolute rounded-md bottom-0 bg-[#314E52] w-full h-[300px] -z-10"></div>
+            <div className="absolute rounded-md bottom-0 bg-[#314E52] dark:bg-[#414E52] w-full h-[300px] -z-10"></div>
             <Image
               src={featrus}
               ref={imageRef}

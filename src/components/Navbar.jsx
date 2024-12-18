@@ -40,27 +40,31 @@ const Navbar = () => {
             {/* Dark Mode Button */}
             <button
               onClick={toggleDarkMode}
-              className="p-2 rounded-full text-gray-700 dark:text-gray-200">
+              className="p-3 rounded-full transition duration-500 ease-in-out transform hover:scale-110 text-gray-700 dark:text-gray-200">
               {darkMode ? (
-                <svg
+                <motion.svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
                   fill="none"
                   stroke="currentColor"
-                  viewBox="0 0 24 24">
+                  viewBox="0 0 24 24"
+                  animate={{ rotate: 180 }}
+                  transition={{ duration: 0.5 }}>
                   <path d="M12 2v2a9 9 0 1 0 9 9h-2a7 7 0 1 1-7-7h2A9 9 0 0 0 12 2Z" />
-                </svg>
+                </motion.svg>
               ) : (
-                <svg
+                <motion.svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
                   fill="none"
                   stroke="currentColor"
-                  viewBox="0 0 24 24">
+                  viewBox="0 0 24 24"
+                  animate={{ rotate: 0 }}
+                  transition={{ duration: 0.5 }}>
                   <path d="M12 3a9 9 0 1 1-9 9 9 9 0 0 1 9-9Z" />
-                </svg>
+                </motion.svg>
               )}
             </button>
 
@@ -89,10 +93,15 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Dropdown menu for mobile */}
+      {/* Dropdown menu for mobile with enhanced glass effect */}
       {isOpen && (
-        <div className="md:hidden absolute left-0 right-0 bg-dark-secondary/80 backdrop-blur-md py-4">
-          <div className="flex flex-col items-center space-y-4">
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3 }}
+          className="md:hidden absolute left-0 right-0 bg-dark-secondary/90 backdrop-blur-md z-40 shadow-md py-4">
+          <div className="flex flex-col px-6 space-y-4">
             <a href="#hero" className="text-gray-700 dark:text-gray-200">
               Home
             </a>
@@ -106,7 +115,7 @@ const Navbar = () => {
               Contact
             </a>
           </div>
-        </div>
+        </motion.div>
       )}
     </motion.div>
   );
